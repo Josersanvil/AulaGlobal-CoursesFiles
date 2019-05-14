@@ -2,7 +2,7 @@
 Downloads all the files of all your courses of Aula Global into your machine using your NIA and password.
 
 ## Requirements
-Python 3.7 or Python 2.7
+Python 3 or Python 2.7
 
 ## Use
 Run the script "download_AG_courses.py" with the arguments: 
