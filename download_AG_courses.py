@@ -1,7 +1,6 @@
 try:
     # For Python 3.0 and later
     import urllib.request as urllib_req
-    import urllib.error as urllib_error
 except ImportError:
     # Fall back to Python 2's urllib_req
     import urllib2 as urllib_req 
@@ -52,7 +51,7 @@ def get_user_info(token):
     root = et.fromstring(resp)
     name = root.find("SINGLE/KEY[@name='fullname']/VALUE")  # Name of the student
     user_id = root.find("SINGLE/KEY[@name='userid']/VALUE").text
-    print(("User ID: " + user_id + ", " + name.text).encode("utf-8"))
+    print("User ID: " + user_id + ", " + name.text)
     return user_id
 
 
@@ -133,11 +132,11 @@ def save_files(token, course_id, files, dirPath=None):
     for moodle_file in files:
         url = (moodle_file['file_url'] + '&token=' + token)
         file = os.path.join(path, moodle_file["file_name"].replace("/","_"))
-        print("\nDownloading file: ", file)
+        print("\nDownloading file to: ", file)
 
         try:
             response = urllib_req.urlopen(url)
-        except urllib_error.URLError as e:
+        except Exception as e: # Most probabily an URLError (Exception for python 2 and 3 compatibility) [Lazy fix]
             print("Couldn't download this file. \n%s"%(e))
 
         with open(file, "wb") as f:
