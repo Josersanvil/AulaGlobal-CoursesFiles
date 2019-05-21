@@ -8,7 +8,7 @@ Python 3 or Python 2.7
 Run the script "download_AG_courses.py" with the arguments: 
 - -u (Your Aula Global username [NIA]) 
 - -p (Your password) 
-- -d (Machine path to directory where files will be downloaded [Optional])
+- -d (Machine path to directory where files will be downloaded) [Optional Arg]
 
 ### Example:
 ```

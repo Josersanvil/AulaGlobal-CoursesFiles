@@ -1,6 +1,7 @@
 try:
     # For Python 3.0 and later
     import urllib.request as urllib_req
+    import urllib.error as urllib_error
 except ImportError:
     # Fall back to Python 2's urllib_req
     import urllib2 as urllib_req 
@@ -112,30 +113,35 @@ Saves the files of your aula global courses in the folder of your machine direct
 If not dirPath is specified a 'cursos' folder will be created in this script's parent directory.
 """
 def save_files(token, course_id, files, dirPath=None):
-	course_id = course_id.replace("/","_")
-	course_len = len(course_id)
+    course_id = course_id.replace("/","_")
+    course_len = len(course_id)
 
 	#Check if operative system is Windows (In windows if path is too long the cmd wont recognize it.)
-	if os.name == "nt" and course_len > 55: 
-		course_len = 55
+    if os.name == "nt" and course_len > 55: 
+        course_len = 55
 
-	if dirPath == None:
-		path = os.path.join(os.getcwd(),"cursos",course_id[:course_len-1])
-	else:
-		if not os.path.isdir(dirPath):
-			raise(Exception("The path given as argument is not a directory"))
-		path = os.path.join(dirPath, course_id[:course_len-1])
+    if dirPath == None:
+        path = os.path.join(os.getcwd(),"cursos",course_id[:course_len-1])
+    else:
+        if not os.path.isdir(dirPath):
+            raise(Exception("The path given as argument is not a directory"))
+        path = os.path.join(dirPath, course_id[:course_len-1])
 
-	if not os.path.exists(path):
-		os.makedirs(path)
+    if not os.path.exists(path):
+        os.makedirs(path)
 
-	for moodle_file in files:
-		url = (moodle_file['file_url'] + '&token=' + token)
-		file = os.path.join(path, moodle_file["file_name"].replace("/","_"))
-		print("\nDownloading file: ", file)
-		response = urllib_req.urlopen(url)
-		with open(file, "wb") as f:
-			f.write(response.read())
+    for moodle_file in files:
+        url = (moodle_file['file_url'] + '&token=' + token)
+        file = os.path.join(path, moodle_file["file_name"].replace("/","_"))
+        print("\nDownloading file: ", file)
+
+        try:
+            response = urllib_req.urlopen(url)
+        except urllib_error.URLError as e:
+            print("Couldn't download this file. \n%s"%(e))
+
+        with open(file, "wb") as f:
+            f.write(response.read())
 
 
 """
