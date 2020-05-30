@@ -70,3 +70,5 @@ Then Security keys:
 
 ![Location of security keys on the profile settings page](docs/Annotations-profile_page.png)
 
+Then the token is the one with service: `aulaglobalmovil`
+
