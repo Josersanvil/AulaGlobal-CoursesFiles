@@ -23,7 +23,7 @@ Download Python 3.7: https://www.python.org/downloads/release/python-372/
 
 Download Python 2.7: https://www.python.org/downloads/release/python-279/
 
-##Instrucciones
+## Instrucciones
 
 Descarga el repositorio clockeando: `Clone or download > Download ZIP` y descomprimelo en tu maquina.
 
@@ -38,7 +38,7 @@ Puedes conseguir tu clave de seguridad entrando a la plataforma de Aula Virtual 
 
 > Si el token esta expirado solo crea uno nuevo en `Operación > Reiniciar`.
 
-##Use
+## Use
 Download the repository by clicking: `Clone or download > Download ZIP` and then uncompress it.
 
 Run the script `download_AG_courses.py` with the arguments: 
