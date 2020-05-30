@@ -64,7 +64,7 @@ Then copy the key that says `service: aulaglobalmovil`. You can reset this key a
 
 Go to profile:
 
-![Location of Profile on the main page](docs/Annotation-main_page.png)
+![Location of Profile on the main page](docs/Annotations-main_page.png)
 
 Then Security keys:
 
