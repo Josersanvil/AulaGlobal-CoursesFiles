@@ -6,7 +6,7 @@ Downloads all the files of all your courses of Moodle Aula Virtual into your mac
 
 Instrucciones en español: [aqui](#instrucciones)
 
-English Instructions: [aqui](#use)
+English Instructions: [here](#use)
 
 ## Use Example:
 ```
