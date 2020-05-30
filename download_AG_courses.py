@@ -148,7 +148,7 @@ def save_files(token, course_id, files, dirPath=None):
 
 		with open(file, "wb") as f:
 			f.write(response.read())
-
+		n+=1
 
 """
 Download all the files of the student's courses 
