@@ -4,9 +4,9 @@ Programa para descargar todos los archivos de tus cursos en tu página de Moodle
 
 Downloads all the files of all your courses of Moodle Aula Virtual into your machine.
 
-Instrucciones en español: [aqui](%Instrucciones)
+Instrucciones en español: [aqui](#instrucciones)
 
-English Instructions: [aqui](%Use)
+English Instructions: [aqui](#use)
 
 ## Use Example:
 ```
