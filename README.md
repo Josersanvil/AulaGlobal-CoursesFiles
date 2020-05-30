@@ -25,9 +25,9 @@ Download Python 2.7: https://www.python.org/downloads/release/python-279/
 
 ## Instrucciones
 
-Descarga el repositorio clockeando: `Clone or download > Download ZIP` y descomprimelo en tu maquina.
+Descarga el repositorio clickeando: `Clone or download > Download ZIP` y descomprimelo en tu maquina.
 
-Corre el programa en python con `download_AG_courses.py` pasando los siguientes argumentos:
+Corre el programa `download_AG_courses.py` con python pasando los siguientes argumentos:
 
 - -t : Tu token de seguridad de `aulaglobalmovil`, que es diferente a la contraseña que usas para entrar a la plataforma.
 - -d : Ruta a la carpeta en la que se guardaran los archivos descargados. **Opcional**. Se guardaran en `./cursos` por defecto.
