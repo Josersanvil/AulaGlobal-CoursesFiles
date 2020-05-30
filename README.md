@@ -2,7 +2,7 @@
 
 Programa para descargar todos los archivos de tus cursos en tu Aula Global de la UC3M a tu maquina.
 
-Downloads all the files of all your courses of Moodle Aula Virtual into your machine.
+Downloads all the files of all your courses of UC3M's Aula Global into your machine.
 
 Instrucciones en español: [aqui](#instrucciones)
 
