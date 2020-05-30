@@ -34,7 +34,13 @@ Corre el programa `download_AG_courses.py` con python pasando los siguientes arg
 
 ### Para conseguir el token de seguridad:
 
-Puedes conseguir tu clave de seguridad entrando a la plataforma de Aula Virtual con tu usuario y contraseña e ir a "Perfil" (Clickea tu nombre en la esquina superior derecha para ver el menú), despues abre el menu de configuracion en la esquina superior derecha de la página y clickea en "Claves de seguridad". Copia la clave que tiene `servicio: aulaglobalmovil`.
+Para conseguir tu clave de seguridad:
+
+1. Entra a la plataforma de Aula Virtual con tu usuario y contraseña.
+2. Ve a "Perfil", que se encuentra en un menu clickeando tu nombre en la esquina superior derecha.
+3. Desde la pagina de tu perfil, abre el menu de configuracion en la esquina superior derecha de la página
+4. Haz click en "Claves de seguridad".
+5. En la pagina de claves de seguridad copia la clave que tiene `servicio: aulaglobalmovil`. Este es el token que tienes que pasar como argumento.
 
 > Si el token esta expirado solo crea uno nuevo en `Operación > Reiniciar`.
 
