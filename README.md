@@ -56,7 +56,7 @@ Then copy the key that says `service: aulaglobalmovil`. You can reset this key a
 
 ## Example images to get security token:
 
-![Location of Profile on the main page](docs/Annotations-main_page.png)
+![Location of Profile on the main page](docs/Annotation-main_page.png)
 
 ![Location of security keys on the profile settings page](docs/Annotations-profile_page.png)
 
