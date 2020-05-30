@@ -1,6 +1,6 @@
 # AulaGlobal-CoursesFiles
 
-Programa para descargar todos los archivos de tus cursos en tu página de Moodle Aula Virtual (Aula Global) a tu maquina
+Programa para descargar todos los archivos de tus cursos en tu Aula Global de la UC3M a tu maquina.
 
 Downloads all the files of all your courses of Moodle Aula Virtual into your machine.
 
