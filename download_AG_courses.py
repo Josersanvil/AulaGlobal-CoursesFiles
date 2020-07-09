@@ -17,12 +17,15 @@ except ImportError:
 	import urllib2 as urllib_req 
 
 import json
-import os
+import os, logging
 import argparse
 import xml.etree.ElementTree as et
-
+import colorama
+from colorama import Fore, Style
 import requests
+import re
 
+colorama.init()
 
 domain = 'aulaglobal.uc3m.es'
 webservice = '/webservice/rest/server.php'
@@ -38,11 +41,7 @@ def get_user_info(token):
 	req = urllib_req.Request(url_info)
 	resp = urllib_req.urlopen(req).read()
 	if "invalidtoken" in resp.decode():
-		print(
-			"Error: \nInvalid Token, the token may have expired or has a typo."
-			"\nCheck if it's written correctly or generate a new one in 'aulaglobal.uc3m.es'"
-		)
-		exit()
+		raise ValueError("Invalid Token")
 
 	root = et.fromstring(resp)
 	name = root.find("SINGLE/KEY[@name='fullname']/VALUE")  # Name of the student
@@ -153,7 +152,7 @@ def save_files(token, course_id, files, dirPath=None):
 """
 Download all the files of the student's courses 
 """
-def main():
+def main_args():
 	parser = \
 		argparse.ArgumentParser(description="Aula Global download files from  Command Line using 'aulaglobalmovil' Security key")
 
@@ -173,6 +172,72 @@ def main():
 		else:
 			save_files(token, course_id["name"].text, files_url)
 
+"""
+Download all the files of the student's courses
+gets input from user
+"""
+def main():
+
+	instructions_url_esp = f"{Fore.BLUE}{Style.BRIGHT}\033[4mhttps://github.com/Josersanvil/AulaGlobal-CoursesFiles#para-conseguir-el-token-de-seguridad{Style.RESET_ALL}"
+	instructions_url_eng = f"{Fore.BLUE}{Style.BRIGHT}\033[4mhttps://github.com/Josersanvil/AulaGlobal-CoursesFiles#get-your-token{Style.RESET_ALL}"
+
+	print("Download UC3M Aula Global files from  Command Line using 'aulaglobalmovil' Security key")
+
+	language = 0 # 1: spanish, 2: english.
+	while language not in (1, 2):
+		print("Choose your language / Escoga su Idioma:")
+		try:
+			language = int(input("1: Español, 2:English. :"))
+		except (ValueError, TypeError):
+			print(f"{Fore.RED}Wrong input value / Valor introducido erroneo. Intentelo de nuevo{Style.RESET_ALL}")
+		print("\n")
+	if language is 1:
+		user_token = ""
+		done = False
+		while not done:
+			print("Introduzca el token de seguridad de su usuario de Aula Global 'aulaglobalmovil':")
+			print(f"Para ver las instrucciones para generar el token ve a: {instructions_url_esp}")
+			user_token = input("Introduzca su token se seguridad: ") 
+			if not user_token or not re.match('^(?=.*[0-9]$)(?=.*[a-zA-Z])', user_token) or not(len(user_token) > 20):
+				print(f"{Fore.RED}El token introducido no parece estar correcto. Intentalo de nuevo.{Style.RESET_ALL}")
+			else:
+				done = True
+			print("\n")
+		print("Descargando los archivos a la carpeta 'cursos'")
+	if language is 2:
+		user_token = ""
+		done = False
+		while not done:
+			print("Introduce your Aula Global user security token 'aulaglobalmovil':")
+			print(f"To see instructions on how to generate the token go to: {instructions_url_eng}")
+			user_token = input("Introduce your security token: ") 
+			if not user_token or not re.match('^(?=.*[0-9]$)(?=.*[a-zA-Z])', user_token) or not(len(user_token) > 20):
+				print(F"{Fore.RED}The given token does not seem to be right. Please try again.{Style.RESET_ALL}")
+			else:
+				done = True
+			print("\n")
+		print("Downloading files to the folder 'cursos'")
+
+	token = user_token
+	try:
+		userid = get_user_info(token)
+	except ValueError:
+		if language == 2:
+			logging.error(
+				f"{Fore.RED}Error: \nInvalid Token, the token may have expired or has a typo."
+				f"\nCheck if it's written correctly or generate a new one in 'aulaglobal.uc3m.es' > profile.{Style.RESET_ALL}"
+			)
+		elif language == 1:
+			logging.error(
+				f"{Fore.RED}Error: \nToken invalido, el token podria haber expirado o es erroneo."
+				f"Chequea que esta escrito correctamente o generara uno nuevo en 'aulaglobal.uc3m.es' > perfil.{Style.RESET_ALL}"
+			)
+		exit()
+	courses = get_courses(token, userid)
+	for course_id in courses:
+		print('Course: ' + course_id["name"].text)
+		files_url = get_course_content(token, course_id["id"].text)
+		save_files(token, course_id["name"].text, files_url)
 
 if __name__ == '__main__':
 	main()
